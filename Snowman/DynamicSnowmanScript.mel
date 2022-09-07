@@ -1,0 +1,54 @@
+float $size = 3;
+
+//Create Base
+polySphere -radius $size -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+move -relative 0 $size 0 ;
+
+
+//Create Midsection
+polySphere -radius ($size * 2/3) -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+move -relative 0 (($size * 2) + ($size * 2/3) - (($size * 2/3) * 1/3)) 0 ;
+
+
+//Create Head
+polySphere -radius ($size * 1/3) -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+move -relative 0 (($size * 2) + (($size * 2/3) * 2) ) 0 ;
+
+
+//Create Nose
+polyCone -radius ($size * 1/10) -height ($size * 2/3) -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+rotate -relative -objectSpace -forceOrderXYZ 90 0 0;
+move -relative 0 (($size * 2) + (($size * 2/3) * 2) ) ($size * 1/4) ;
+
+
+//Create Eyes
+polySphere -radius ($size * 1/20) -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+move -relative ($size * 13/100) ($size *3.433) ($size * .25);
+
+polySphere -radius ($size * 1/20) -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1;
+move -relative ($size * -13/100) ($size *3.433) ($size * .25);
+
+
+//Buttons
+polyTorus -radius ($size * .06) -sectionRadius ($size * 1/50) -twist 0 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 1 -constructionHistory 1;
+rotate -relative -objectSpace -forceOrderXYZ 90 0 0;
+move -relative 0 ($size * 2.4) ($size * 2/3);
+
+polyTorus -radius ($size * .06) -sectionRadius ($size * 1/50) -twist 0 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 1 -constructionHistory 1;
+rotate -relative -objectSpace -forceOrderXYZ 75 0 0;
+move -relative 0 ($size * 8/3) ($size * 1.9/3);
+
+polyTorus -radius ($size * .06) -sectionRadius ($size * 1/50) -twist 0 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 1 -constructionHistory 1;
+rotate -relative -objectSpace -forceOrderXYZ 115 0 0;
+move -relative 0 ($size * 6.457/3) ($size * 1.8/3);
+
+
+//Hat
+polyCylinder -radius ($size * 1/3) -height ($size / 15) -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance ($size * -.1) ($size * 11/3) 0;
+rotate -relative -objectSpace -forceOrderXYZ 0 0 15;
+
+polyCylinder -radius ($size * .2) -height ($size / 3) -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance ($size * -.1) (($size * 11/3) + (($size / 3) / 2) + (($size / 15) / 2))  0;
+rotate -relative -objectSpace -forceOrderXYZ 0 0 15;
+move -relative  -objectSpace -worldSpaceDistance ($size * -.05) 0 0;
