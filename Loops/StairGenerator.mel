@@ -1,0 +1,19 @@
+//Build Stair
+
+float $width;
+float $height;
+float $depth;
+
+
+polyCube -width 3 -height .3 -depth .5 -subdivisionsX 1 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -createUVs 4 -constructionHistory 1;
+move -relative 3 0 0 ;
+
+//Move Pivot Point
+move -relative -3 0 0 pCube1.scalePivot pCube1.rotatePivot ;
+SnapToGridRelease; dR_enterForSnap;
+
+//Duplicate Stair
+duplicate -returnRootsOnly;
+
+
+/*
