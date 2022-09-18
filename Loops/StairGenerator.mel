@@ -15,6 +15,7 @@ proc StairCaseCreator(float $stairWidth, float $stairHeight, float $stairDepth, 
     move -relative  0 $stepHeight 0 ;
     rotate -relative -objectSpace -forceOrderXYZ 0 $stepRotation 0;
 
+    //Duplicate Stairs to a certain step count
     for ($i=0; $i <= $stairCaseHeight; ++$i)
     {
         duplicate -smartTransform;
