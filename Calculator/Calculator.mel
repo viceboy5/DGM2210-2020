@@ -1,0 +1,57 @@
+global proc Addition(float $input[])
+{
+    float $sum = 0;
+
+    for ($i = 0; $i < size($input); $i++)
+    {
+        //$input[$i] += $Sum;
+        $Sum += $input[$i];
+    }
+    print $sum;
+    
+}
+
+//Addition();
+
+global proc Subtraction(float $input[])
+{
+    float $difference = 0;
+
+    for ($i = 0; $i < size($input); $i++)
+    {
+        //$input[$i] += $Sum;
+        $difference -= $input[$i];
+    }
+    print $difference;
+}
+
+Subtraction();
+
+
+
+
+
+
+//  -Subtraction
+//  -Multiplication
+//  -Division
+//  -Exponent
+//  -Mean
+//  -Median
+
+//Calculator
+global proc Calculator(float $input[], int $operation)
+{
+    //addition
+    if($operation ==1)
+    {
+        Addition($input);
+    }
+    else if ($operation ==2)
+    {
+        Subtraction($input);
+    }
+
+}
+           //$float input[]   $operation(1-7)
+Calculator({1, 3, 5, 8, 10, 217, 90.78658f},      2);
