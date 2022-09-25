@@ -4,23 +4,24 @@ global proc Addition(float $input[])
 
     for ($i = 0; $i < size($input); $i++)
     { 
-        $Sum += $input[$i];
+        $sum += $input[$i];
     }
-    print $sum;
+    print ($sum + "\n");
     
 }
 
 //Addition();
 
+//Values in array after $input[0] are subtracted from $input[0]
 global proc Subtraction(float $input[])
 {
-    float $difference = 0;
+    float $difference = $input[0];
 
-    for ($i = 0; $i < size($input); $i++)
+    for ($i = 1; $i < size($input); $i++)
     {
         $difference -= $input[$i];
     }
-    print $difference;
+    print ($difference + "\n");
 }
 
 //Subtraction();
@@ -52,4 +53,4 @@ global proc Calculator(float $input[], int $operation)
 
 }
            //$float input[]   $operation(1-7)
-Calculator({1, 3, 5, 8, 10, 217, 90.78658f},      2);
+Calculator(float {9875.256, 3, 19.7, 5},      2);
