@@ -1,8 +1,8 @@
 global proc Addition(float $input[])
 {
-    float $sum = 0;
+    float $sum = $input[0];
 
-    for ($i = 0; $i < size($input); $i++)
+    for ($i = 1; $i < size($input); $i++)
     { 
         $sum += $input[$i];
     }
@@ -11,6 +11,7 @@ global proc Addition(float $input[])
 }
 
 //Addition();
+
 
 //Values in array after $input[0] are subtracted from $input[0]
 global proc Subtraction(float $input[])
@@ -27,16 +28,87 @@ global proc Subtraction(float $input[])
 //Subtraction();
 
 
+global proc Multiplication(float $input[])
+{
+    float $product = $input[0];
+
+    for ($i = 1; $i < size($input); $i++)
+    { 
+        $product *= $input[$i];
+    }
+    print ($product + "\n");
+}
+
+//Multiplication();
 
 
+global proc Division(float $input[])
+{
+    float $quotient = $input[0];
 
+    for ($i = 1; $i < size($input); $i++)
+    { 
+        $quotient /= $input[$i];
+    }
+    print ($quotient + "\n");
+}
 
-//  -Subtraction
-//  -Multiplication
-//  -Division
-//  -Exponent
-//  -Mean
-//  -Median
+//Division();
+
+global proc Power(float $input[])
+{
+    if(size($input)==2)
+    {
+        $product = `pow $input[0] $input [1]`;
+        print ($product + "\n");
+    }
+    else
+    {
+        print("Please input only two numbers, a variable and an exponent for the variable to be raised to the power of, i.e: x^n \n");
+    }
+}
+
+//Power();
+
+global proc Mean(float $input[])
+{
+
+    float $sum = $input[0];
+
+    for ($i = 1; $i < size($input); $i++)
+    { 
+        $sum += $input[$i];
+    }
+
+    print($sum / size($input));
+}
+
+//Mean();
+
+global proc Median(float $input[])
+{
+    $highest = $input[0];
+    for ($i = 1; $i < size($input); $i++)
+    {
+        if($input[$i] > $highest)
+        {
+            $highest = $input[$i];
+        }
+        
+    }
+
+    $lowest = $input[0];
+    for ($i = 1; $i < size($input); $i++)
+    {
+        if($input[$i] < $lowest)
+        {
+            $lowest = $input[$i];
+        }
+        
+    }
+
+    print (($highest + $lowest) / 2);
+}
 
 //Calculator
 global proc Calculator(float $input[], int $operation)
@@ -46,11 +118,36 @@ global proc Calculator(float $input[], int $operation)
     {
         Addition($input);
     }
+
     else if ($operation ==2)
     {
         Subtraction($input);
     }
 
+    else if ($operation ==3)
+    {
+        Multiplication($input);
+    }
+
+    else if ($operation ==4)
+    {
+        Division($input);
+    }
+
+    else if ($operation ==5)
+    {
+        Power($input);
+    }
+    else if ($operation ==6)
+    {
+        Mean($input);
+    }
+    else if ($operation ==7)
+    {
+        Median($input);
+    }
+
+
 }
            //$float input[]   $operation(1-7)
-Calculator(float {9875.256, 3, 19.7, 5},      2);
+Calculator(float {10, 5, 17, 30, 80},      7);
