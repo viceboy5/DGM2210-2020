@@ -1,4 +1,4 @@
-global proc Addition(float $input[])
+global proc float Addition(float $input[])
 {
     float $sum = $input[0];
 
@@ -6,7 +6,7 @@ global proc Addition(float $input[])
     { 
         $sum += $input[$i];
     }
-    print ($sum + "\n");
+    return $sum;
     
 }
 
@@ -14,7 +14,7 @@ global proc Addition(float $input[])
 
 
 //Values in array after $input[0] are subtracted from $input[0]
-global proc Subtraction(float $input[])
+global proc float Subtraction(float $input[])
 {
     float $difference = $input[0];
 
@@ -22,13 +22,13 @@ global proc Subtraction(float $input[])
     {
         $difference -= $input[$i];
     }
-    print ($difference + "\n");
+    return $difference;
 }
 
 //Subtraction();
 
 
-global proc Multiplication(float $input[])
+global proc float Multiplication(float $input[])
 {
     float $product = $input[0];
 
@@ -36,7 +36,7 @@ global proc Multiplication(float $input[])
     { 
         $product *= $input[$i];
     }
-    print ($product + "\n");
+    return $product;
 }
 
 //Multiplication();
@@ -116,12 +116,24 @@ global proc Calculator(float $input[], int $operation)
     //addition
     if($operation ==1)
     {
-        Addition($input);
+        print ("The sum of ");
+        for ($i = 0; $i < size($input); $i++)
+        {
+            print ($input[$i] + ", ");
+        }
+
+        print ("is " + Addition($input) + "\n");
     }
 
     else if ($operation ==2)
     {
-        Subtraction($input);
+        print ($input[0]);
+        for ($i = 1; $i < size($input); $i++)
+        {
+            print (" - " + $input[$i]);
+        }
+
+        print (" is " + Subtraction($input) + "\n");
     }
 
     else if ($operation ==3)
@@ -150,4 +162,4 @@ global proc Calculator(float $input[], int $operation)
 
 }
            //$float input[]   $operation(1-7)
-Calculator(float {10, 5, 17, 30, 80},      7);
+Calculator(float {10, 5, 17, 30, 80},      2);
