@@ -197,6 +197,34 @@ global proc Calculator(float $input[], int $operation)
            //$float input[]   $operation(1-7)
 //Calculator(float {10, 8, 3, 203.8, 5}, 4);
 
+
+global proc CalcEqualsButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $thirdField = `optionVar -q "thirdField"`;
+    string $fourthField = `optionVar -q "fourthField"`;
+    string $fifthField = `optionVar -q "fifthField"`;
+    string $sixthField = `optionVar -q "sixthField"`;
+
+
+    string $input = Calculator({$firstField})
+}
+
+//secondaryUI
+//$mColumn = `columnLayout -parent $mWindow -adjustableColumn 1`;
+
+    //double check this later when checking for frOperation value
+    /*optionVar -stringValue "firstField" `floatField -parent $mColumn`;
+    optionVar -stringValue "secondField" `floatField -parent $mColumn`;
+    optionVar -stringValue "thirdField" `floatField -parent $mColumn`;
+    optionVar -stringValue "fourthField" `floatField -parent $mColumn`;
+    optionVar -stringValue "fifthField" `floatField -parent $mColumn`;
+    optionVar -stringValue "sixthField" `floatField -parent $mColumn`;
+    optionVar -stringValue "calcOperation" `radioButtonGrp -parent $mColumn -numberOfRadioButtons 4 -labelArray4 "+" "-" "*" "/"`;
+    optionVar -stringValue "calcOperation" `radioButtonGrp -parent $mColumn -numberOfRadioButtons 3 -labelArray3 "^" "Average" "Mode"`;*/
+
+
 global proc CalcUI()
 {
     string $mWindow = "calcWindow";
@@ -208,9 +236,25 @@ global proc CalcUI()
                         -widthHeight 300 500 
                         -resizeToFitChildren 1
                         $mWindow`;
+    
     $mColumn = `columnLayout -parent $mWindow -adjustableColumn 1`;
+    
+    optionVar -stringValue "calcResult" `textField -parent $mColumn -editable 0`;
 
-                        
+    $mLayout = `gridLayout -numberOfColumns 3 -cellWidthHeight 100 30 -parent $mWindow`;
+    button -parent $mLayout -label "1" -command "";
+    button -parent $mLayout -label "2" -command "";
+    button -parent $mLayout -label "3" -command "";
+    button -parent $mLayout -label "4" -command "";
+    button -parent $mLayout -label "5" -command "";
+    button -parent $mLayout -label "6" -command "";
+    button -parent $mLayout -label "7" -command "";
+    button -parent $mLayout -label "8" -command "";
+    button -parent $mLayout -label "9" -command "";
+    button -parent $mLayout -label "0" -command "";
+    button -parent $mLayout -label "=" -command "CalcEqualsButton";
+
+    
 
 
     showWindow $mWindow;
