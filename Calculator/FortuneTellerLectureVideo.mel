@@ -20,15 +20,15 @@ global proc string LotteryNumbers()
 
 print (LotteryNumbers());
 
-global proc BestestFriend(string $name)
+global proc string BestestFriend(string $name)
 {
     string $names[] = {"Dave","Doug","Clarence", "Mary", "Jane", "Tina", "Phil"};
     int $size = size($names);
     int $randNum = `rand $size`;
-    print  ($name + ", your new bestest friend will be named " + $names[$randNum] + "!\n");
+    return  ($name + ", your new bestest friend will be named " + $names[$randNum] + "!");
 }
 
-global string proc FortuneCookie()
+global proc string FortuneCookie()
 {
     string $fortunes[] = {"Believing that you are beautiful will make you appear beautiful to others around you",
                      "Constant grinding can turn an iron rod into a needle",
@@ -38,7 +38,7 @@ global string proc FortuneCookie()
 
     int $randFortune = `rand (size($fortunes))`;
 
-    print ("Your fortune cookie said: '" + $fortunes[$randFortune] + "'.  Why are fortune cookies so lame nowadays?\n");
+    return ("Your fortune cookie said: '" + $fortunes[$randFortune] + "'.  Why are fortune cookies so lame nowadays?");
 }
 
 FortuneCookie();
@@ -53,7 +53,7 @@ global proc string Zodiac(int $birthYear)
 
 print (Zodiac(1917));
 
-global string proc FortuneTeller(string $myName, int $myBirthYear, int $operation)
+global proc string FortuneTeller(string $myName, int $myBirthYear, int $operation)
 {
     if($operation == 1)
     {
@@ -62,11 +62,11 @@ global string proc FortuneTeller(string $myName, int $myBirthYear, int $operatio
     }
     else if ($operation ==2)
     {
-        BestestFriend($myName);
+        return (BestestFriend($myName));
     }
     else if ($operation ==3)
     {
-        FortuneCookie();
+        return (FortuneCookie());
     }
 
     else if ($operation ==4)
@@ -89,12 +89,15 @@ global proc FT_ButtonCmd()
     string $nameField = `optionVar -q "ftNameField"`;
     string $yearField = `optionVar -q "ftYearField"`;
     string $operField = `optionVar -q "ftOperation"`;
+    string $resultField = `optionVar -q "ftResult"`;
+
 
     string $name = `textField -q -text  $nameField`;
     string $year = `intField -q -value $yearField`;
     string $oper = `radioButtonGrp -q -select $operField`;
 
-    FortuneTeller($name, $year, $oper);
+    string $result = FortuneTeller($name, $year, $oper);
+    textField -e -text  $result $resultField;
 }
 
 
