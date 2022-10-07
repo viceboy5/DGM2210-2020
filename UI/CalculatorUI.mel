@@ -198,18 +198,7 @@ global proc Calculator(float $input[], int $operation)
 //Calculator(float {10, 8, 3, 203.8, 5}, 4);
 
 
-global proc CalcEqualsButton()
-{
-    string $firstField = `optionVar -q "firstField"`;
-    string $secondField = `optionVar -q "secondField"`;
-    string $thirdField = `optionVar -q "thirdField"`;
-    string $fourthField = `optionVar -q "fourthField"`;
-    string $fifthField = `optionVar -q "fifthField"`;
-    string $sixthField = `optionVar -q "sixthField"`;
 
-
-    string $input = Calculator({$firstField})
-}
 
 //secondaryUI
 //$mColumn = `columnLayout -parent $mWindow -adjustableColumn 1`;
@@ -223,6 +212,88 @@ global proc CalcEqualsButton()
     optionVar -stringValue "sixthField" `floatField -parent $mColumn`;
     optionVar -stringValue "calcOperation" `radioButtonGrp -parent $mColumn -numberOfRadioButtons 4 -labelArray4 "+" "-" "*" "/"`;
     optionVar -stringValue "calcOperation" `radioButtonGrp -parent $mColumn -numberOfRadioButtons 3 -labelArray3 "^" "Average" "Mode"`;*/
+
+global proc OneButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "1";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc TwoButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "2";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc ThreeButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "3";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc FourButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "4";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc FiveButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "5";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc SixButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "6";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc SevenButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "7";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc EightButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "8";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc NineButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = "9";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc ZeroButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    float $buttonText = 0;
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc DecimalButtonPress()
+{
+    string $readoutField = `optionVar -q "calcReadout"`;
+    string $buttonText = ".";
+    textField -e -text $buttonText $readoutField;
+}
+
+global proc CalcEqualsButton()
+{
+    string $result = Calculator({}, 1);
+}
 
 
 global proc CalcUI()
@@ -240,22 +311,30 @@ global proc CalcUI()
     $mColumn = `columnLayout -parent $mWindow -adjustableColumn 1`;
     
     optionVar -stringValue "calcResult" `textField -parent $mColumn -editable 0`;
+    optionVar -stringValue "calcReadout" `textField -parent $mColumn -editable 0`;
 
-    $mLayout = `gridLayout -numberOfColumns 3 -cellWidthHeight 100 30 -parent $mWindow`;
-    button -parent $mLayout -label "1" -command "";
-    button -parent $mLayout -label "2" -command "";
-    button -parent $mLayout -label "3" -command "";
-    button -parent $mLayout -label "4" -command "";
-    button -parent $mLayout -label "5" -command "";
-    button -parent $mLayout -label "6" -command "";
-    button -parent $mLayout -label "7" -command "";
-    button -parent $mLayout -label "8" -command "";
-    button -parent $mLayout -label "9" -command "";
-    button -parent $mLayout -label "0" -command "";
-    button -parent $mLayout -label "=" -command "CalcEqualsButton";
+    $digitLayout = `gridLayout -numberOfColumns 3 -cellWidthHeight 100 30 -parent $mWindow`;
+    button -parent $digitLayout -label "1" -command "OneButtonPress";
+    button -parent $digitLayout -label "2" -command "TwoButtonPress";
+    button -parent $digitLayout -label "3" -command "ThreeButtonPress";
+    button -parent $digitLayout -label "4" -command "FourButtonPress";
+    button -parent $digitLayout -label "5" -command "FiveButtonPress";
+    button -parent $digitLayout -label "6" -command "SixButtonPress";
+    button -parent $digitLayout -label "7" -command "SevenButtonPress";
+    button -parent $digitLayout -label "8" -command "EightButtonPress";
+    button -parent $digitLayout -label "9" -command "NineButtonPress";
+    button -parent $digitLayout -label "0" -command "ZeroButtonPress";
+    button -parent $digitLayout -label "." -command "DecimalButtonPress";
 
-    
-
+    $operationLayout = `columnLayout -parent $mColumn`;
+    button -parent $digitLayout -label "+" -command "";
+    button -parent $digitLayout -label "-" -command "";
+    button -parent $digitLayout -label "*" -command "";
+    button -parent $digitLayout -label "/" -command "";
+    button -parent $digitLayout -label "^" -command "";
+    button -parent $digitLayout -label "Average" -command "";
+    button -parent $digitLayout -label "Mode" -command "";
+    button -parent $digitLayout -label "=" -command "CalcEqualsButton";
 
     showWindow $mWindow;
 }
