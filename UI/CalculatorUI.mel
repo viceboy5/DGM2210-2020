@@ -196,16 +196,9 @@ global proc Calculator(float $input[], int $operation)
            //$float input[]   $operation(1-7)
 //Calculator(float {10, 8, 3, 203.8, 5}, 4);
 
-
-global proc int AddButtonPress()
+global proc int SetOperationToAddition()
 {
     int $operation = 1;
-    return $operation;
-}
-
-global proc int SubtractButtonPress()
-{
-    int $operation = 2;
     return $operation;
 }
 
@@ -213,12 +206,14 @@ global proc CalcEqualsButton()
 {
     string $firstField = `optionVar -q "firstField"`;
     string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
 
     float $indexOne = `floatField -q -value $firstField`;
     float $indexTwo = `floatField -q -value $secondField`;
-    int $operation = 1;
 
-    string $result = Calculator({$indexOne, $indexTwo}, $operation);
+
+    string $result = Calculator({$indexOne, $indexTwo}, SetOperationToAddition());
+    textField -e -text $result $resultField;
 }
 
 global proc CalcUI()
@@ -242,13 +237,14 @@ global proc CalcUI()
     optionVar -stringValue "secondField" `floatField -parent $mColumn`;
 
     $operationLayout = `gridLayout -numberOfColumns 3 -parent $mWindow`;
-    button -parent $operationLayout -label "+" -command "AddButtonPress";
-    button -parent $operationLayout -label "-" -command "SubtractButtonPress";
-    button -parent $operationLayout -label "*" -command "";
-    button -parent $operationLayout -label "/" -command "";
-    button -parent $operationLayout -label "^" -command "";
-    button -parent $operationLayout -label "Average" -command "";
-    button -parent $operationLayout -label "Mode" -command "";
+    optionVar -stringValue "plusButton" `button -parent $operationLayout -label "+" -command "SetOperationToAddition"`;
+    optionVar -stringValue "minusButton" `button -parent $operationLayout -label "-" -command "SetOperation"`;
+    optionVar -stringValue "multButton"`button -parent $operationLayout -label "*" -command "SetOperation"`;
+    optionVar -stringValue "divButton" `button -parent $operationLayout -label "/" -command "SetOperation"`;
+    optionVar -stringValue "powButton"`button -parent $operationLayout -label "^" -command "SetOperation"`;
+    optionVar -stringValue "meanButton" `button -parent $operationLayout -label "Average" -command "SetOperation"`;
+    optionVar -stringValue "modeButton" `button -parent $operationLayout -label "Mode" -command "SetOperation"`;
+    
     button -parent $operationLayout -label "=" -command "CalcEqualsButton";
 
     showWindow $mWindow;
