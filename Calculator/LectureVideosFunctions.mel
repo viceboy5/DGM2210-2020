@@ -28,3 +28,12 @@ proc int RandomNumber(int $num)
 print (RandomNumber(100) + RandomNumber(100));
 
 print (NamePicker() + "'s favorite number is " + RandomNumber(100) + "!\n");
+
+//Calculator
+//  -Addition
+//  -Subtraction
+//  -Multiplication
+//  -Division
+//  -Exponent
+//  -Mean
+//  -Median
