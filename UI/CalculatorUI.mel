@@ -212,7 +212,7 @@ global proc CalcEqualsButton()
     float $indexTwo = `floatField -q -value $secondField`;
 
 
-    string $result = Calculator({$indexOne, $indexTwo}, SetOperationToAddition());
+    string $result = Calculator({$indexOne, $indexTwo}, 1);
     textField -e -text $result $resultField;
 }
 
