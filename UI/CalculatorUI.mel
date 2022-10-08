@@ -193,22 +193,6 @@ global proc Calculator(float $input[], int $operation)
     }
 }
 
-           //$float input[]   $operation(1-7)
-//Calculator(float {10, 8, 3, 203.8, 5}, 4);
-
-/*global proc SetOperation()
-{
-
-
-    if ()
-    {
-
-    }
-    else if ()
-    {
-
-    }
-}*/
 
 global proc AddButton()
 {
@@ -341,15 +325,6 @@ global proc CalcUI()
     optionVar -stringValue "modeButton"`button -label "mode" -command "ModeButton"`;
     setParent ..; setParent ..;
 
-
-    /*$operationLayout = `gridLayout -numberOfColumns 3 -parent $mWindow`;
-    optionVar -stringValue "plusButton" `button -parent $operationLayout -label "+" -command "SetOperationToAddition"`;
-    optionVar -stringValue "minusButton" `button -parent $operationLayout -label "-" -command "SetOperation"`;
-    optionVar -stringValue "multButton"`button -parent $operationLayout -label "*" -command "SetOperation"`;
-    optionVar -stringValue "divButton" `button -parent $operationLayout -label "/" -command "SetOperation"`;
-    optionVar -stringValue "powButton"`button -parent $operationLayout -label "^" -command "SetOperation"`;
-    optionVar -stringValue "meanButton" `button -parent $operationLayout -label "Average" -command "SetOperation"`;
-    optionVar -stringValue "modeButton" `button -parent $operationLayout -label "Mode" -command "SetOperation"`;*/
     showWindow $mWindow;
 }
 
