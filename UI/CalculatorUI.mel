@@ -178,7 +178,7 @@ global proc Calculator(float $input[], int $operation)
     }
     else if ($operation ==7)
     {
-        print ("The median of ");
+        print ("The mode of ");
         for ($i = 0; $i < (size($input) -1); $i++)
         {
             print ($input[$i] + ", ");
@@ -210,22 +210,105 @@ global proc Calculator(float $input[], int $operation)
     }
 }*/
 
-global proc CalcEqualsButton()
+global proc AddButton()
 {
     string $firstField = `optionVar -q "firstField"`;
     string $secondField = `optionVar -q "secondField"`;
     string $resultField = `optionVar -q "calcResult"`;
-    string $buttons = `optionVar -q "operationButtons"`;
 
     float $indexOne = `floatField -q -value $firstField`;
     float $indexTwo = `floatField -q -value $secondField`;
-    //string $operation = `radioCollection -q -numberOfCollectionItems $buttons`;
 
 
     string $result = Calculator({$indexOne, $indexTwo}, 1);
     textField -e -text $result $resultField;
-    //print $operation;
+
 }
+
+global proc SubtractButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 2);
+    textField -e -text $result $resultField;
+}
+
+global proc MultiplicationButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 3);
+    textField -e -text $result $resultField;
+}
+
+global proc DivisionButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 4);
+    textField -e -text $result $resultField;
+}
+
+global proc PowerButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 5);
+    textField -e -text $result $resultField;
+}
+
+global proc AverageButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 6);
+    textField -e -text $result $resultField;
+}
+
+global proc ModeButton()
+{
+    string $firstField = `optionVar -q "firstField"`;
+    string $secondField = `optionVar -q "secondField"`;
+    string $resultField = `optionVar -q "calcResult"`;
+
+    float $indexOne = `floatField -q -value $firstField`;
+    float $indexTwo = `floatField -q -value $secondField`;
+
+
+    string $result = Calculator({$indexOne, $indexTwo}, 7);
+    textField -e -text $result $resultField;
+}
+
 
 global proc CalcUI()
 {
@@ -249,13 +332,13 @@ global proc CalcUI()
 
     $operationLayout = `gridLayout -numberOfColumns 3 -parent $mWindow`;
     optionVar -stringValue "operationButtons" `radioCollection -parent $operationLayout`;
-    optionVar -stringValue "plusButton" `radioButton -label "+"` ;
-    optionVar -stringValue "minButton"`radioButton -label "-"` ;
-    optionVar -stringValue "multButton"`radioButton -label "*"` ;
-    optionVar -stringValue "divButton"`radioButton -label "/"` ;
-    optionVar -stringValue "powButton"`radioButton -label "^"` ;
-    optionVar -stringValue "aveButton"`radioButton -label "average"` ;
-    optionVar -stringValue "modeButton"`radioButton -label "mode"` ;
+    optionVar -stringValue "plusButton" `button -label "+" -command "AddButton"`;
+    optionVar -stringValue "minButton"`button -label "-" -command "SubtractButton"` ;
+    optionVar -stringValue "multButton"`button -label "*" -command "MultiplicationButton"`;
+    optionVar -stringValue "divButton"`button -label "/" -command "DivisionButton"`;
+    optionVar -stringValue "powButton"`button -label "^" -command "PowerButton"`;
+    optionVar -stringValue "aveButton"`button -label "average" -command "AverageButton"`;
+    optionVar -stringValue "modeButton"`button -label "mode" -command "ModeButton"`;
     setParent ..; setParent ..;
 
 
@@ -267,9 +350,6 @@ global proc CalcUI()
     optionVar -stringValue "powButton"`button -parent $operationLayout -label "^" -command "SetOperation"`;
     optionVar -stringValue "meanButton" `button -parent $operationLayout -label "Average" -command "SetOperation"`;
     optionVar -stringValue "modeButton" `button -parent $operationLayout -label "Mode" -command "SetOperation"`;*/
-    
-    button -parent $operationLayout -label "=" -command "CalcEqualsButton";
-
     showWindow $mWindow;
 }
 
