@@ -8,7 +8,7 @@ global proc DuplicateObjectsRandomly()
     string $yminField = `optionVar -q "yMinimum"`;
     string $ymaxField = `optionVar -q "yMaximum"`;
     string $zminField = `optionVar -q "zMinimum"`;
-    string $zmaxField = `optionVAr -q "zMaximum"`;
+    string $zmaxField = `optionVar -q "zMaximum"`;
 
     float $xMin = `floatField -q -value $xminField`;
     float $xMax = `floatField -q -value $xmaxField`;
@@ -17,10 +17,17 @@ global proc DuplicateObjectsRandomly()
     float $zMin = `floatField -q -value $zminField`;
     float $zMax = `floatField -q -value $zmaxField`;
     int $duplicates = `intField -q -value $duplicateField`;
-
+    
+    group;
+    
     for($i=1; $i<=$duplicates; $i++)
     {
+        $randomX = rand ($xMin, $xMax);
+        $randomY = rand ($yMin, $yMax);
+        $randomZ = rand ($zMin, $zMax);
+
         duplicate;
+        move -absolute $randomX $randomY $randomZ;
     }
 }
 
