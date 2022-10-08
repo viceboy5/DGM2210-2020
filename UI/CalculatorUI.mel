@@ -132,25 +132,18 @@ global proc string Calculator(float $input[], int $operation)
     //division isn't working???
     else if ($operation ==4)
     {
-        for ($i = 0; $i < size($input); $i++)
-        {
-            if ($input[$i] = 0)
-            {
-                return ("Cannot divide by zero, ensure all input values are non-zeros");
-            }
-            
-            else if ($input[$i] != 0)
 
-            {
-                /*print ($input[0]);
+
+            /*
+                print ($input[0]);
             for ($i = 1; $i < size($input); $i++)
             {
                 print (" / " + $input[$i]);
             }*/
 
             return (floatArrayToString($input, " / ") + (" = " + Division($input) + "\n"));
-            }
-        }
+            
+        
     }
 
     else if ($operation ==5)
@@ -168,6 +161,7 @@ global proc string Calculator(float $input[], int $operation)
     else if ($operation ==6)
     {
         return (("The average of ") + floatArrayToString($input, " , ") + " is " + Mean($input));
+        //comments for printing more sophisticatedly.  Unable to return for UI though
         /*print ($input[0]);
         for ($i = 1; $i < (size($input) -1); $i++)
         {
