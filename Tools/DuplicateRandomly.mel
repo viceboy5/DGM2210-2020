@@ -79,3 +79,7 @@ global proc RandomDuplicationUI()
 }
 
 RandomDuplicationUI();
+
+//Enter minimum and maximum values for all 3 axis
+//enter how many duplicates you want
+//duplicate button will duplicate all selected objects grouped around the new random areas within bounds
