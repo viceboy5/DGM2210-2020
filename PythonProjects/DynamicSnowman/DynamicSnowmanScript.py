@@ -32,7 +32,15 @@ bottomButton = cmds.polyTorus(radius=size * .06, sectionRadius=size * 1/50, twis
 cmds.rotate(115, 0, 0, bottomButton, relative=True, objectSpace=True, forceOrderXYZ=True)
 cmds.move(0, size * 6.457/3, size * 1.8/3, bottomButton, relative=True)
 
-polyCylinder
+hatBrim = cmds.polyCylinder(radius=size * 1/3, height=size / 15, subdivisionsX=20, subdivisionsY=1, subdivisionsZ=1, axis=[0,1,0], roundCap=False, createUVs=2, constructionHistory=True)
+cmds.move(size * -.1, size* 11/3, 0, hatBrim, relative=True, objectSpace=True, worldSpaceDistance=True)
+cmds.rotate(0, 0, 15, hatBrim, relative=True, objectSpace=True, forceOrderXYZ=True)
+
+hat = cmds.polyCylinder(radius=size * .2, height=size / 3, subdivisionsX=20, subdivisionsY=1, subdivisionsZ=1, axis=[0,1,0], roundCap=False, createUVs=2, constructionHistory=True)
+cmds.move((size * -.1), ((size * 11/3) + ((size / 3) / 2) + ((size / 15) / 2)),  0, hat, relative=True, objectSpace=True, worldSpaceDistance=True)
+cmds.rotate(0, 0, 15, hat, relative=True, objectSpace=True, forceOrderXYZ=True)
+cmds.move((size * -.05), 0, 0, hat, relative=True, objectSpace=True, worldSpaceDistance=True)
+
 
 
 
